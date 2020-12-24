@@ -20,4 +20,4 @@ jobs:
         run: |
           echo "Hello, Nono!"
           rclone config create monS3 s3 env_auth true provider Minio endpoint https://minio.lab.sspcloud.fr
-          "rclone ls monS3:funcampr"
+          rclone ls monS3:funcampr
