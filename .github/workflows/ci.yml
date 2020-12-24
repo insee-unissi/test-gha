@@ -18,6 +18,12 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.S3_USERNAME }} 
           AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_PASSWORD }}
         run: |
-          echo "Hello, Nono!"
           rclone config create monS3 s3 env_auth true provider Minio endpoint https://minio.lab.sspcloud.fr
           rclone ls monS3:funcampr
+          mkdir funcampr-gateway
+          mkdir funcampr-allinone
+  # Copying required statistical softwares and dependencies (R and packages, Rstudio) in portable mode
+      - name: Download Initial Dock
+        run: |
+          rclone copy monS3:funcampr/ressources.zip funcampr-gateway
+          unzip -q funcampr-gateway/ressources.zip -d funcampr-allinone
