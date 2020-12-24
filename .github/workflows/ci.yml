@@ -24,6 +24,9 @@ jobs:
           mkdir funcampr-allinone
   # Copying required statistical softwares and dependencies (R and packages, Rstudio) in portable mode
       - name: Download Initial Dock
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.S3_USERNAME }} 
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_PASSWORD }}
         run: |
           rclone copy monS3:funcampr/ressources.zip funcampr-gateway
           unzip -q funcampr-gateway/ressources.zip -d funcampr-allinone
