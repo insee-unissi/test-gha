@@ -30,3 +30,15 @@ jobs:
         run: |
           rclone copy monS3:funcampr/ressources.zip funcampr-gateway
           unzip -q funcampr-gateway/ressources.zip -d funcampr-allinone
+  # Copying front-end launcher (with picts in Grimoire subfolder and hta user interface)
+      - name: Download Front-end Launcher
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.S3_USERNAME }} 
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_PASSWORD }}
+        run: |   
+          wget -P funcampr-gateway https://git.lab.sspcloud.fr/funcamp-r/funcamp-r-windows-grimoire-launcher/-/archive/master/funcamp-r-windows-grimoire-launcher-master.zip
+          unzip -q funcampr-gateway/funcamp-r-windows-grimoire-launcher-master.zip -d funcampr-gateway
+          mkdir funcampr-allinone/ressources/Grimoire
+          rclone copy funcampr-gateway/funcamp-r-windows-grimoire-launcher-master/Grimoire funcampr-allinone/ressources/Grimoire
+          rclone copy funcampr-gateway/funcamp-r-windows-grimoire-launcher-master/START_grimoire.hta funcampr-allinone
+
