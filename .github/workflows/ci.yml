@@ -41,4 +41,12 @@ jobs:
           mkdir funcampr-allinone/ressources/Grimoire
           rclone copy funcampr-gateway/funcamp-r-windows-grimoire-launcher-master/Grimoire funcampr-allinone/ressources/Grimoire
           rclone copy funcampr-gateway/funcamp-r-windows-grimoire-launcher-master/START_grimoire.hta funcampr-allinone
+  # Zipping the whole folder and pushing to S3 repo
+      - name: Push On Minio
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.S3_USERNAME }} 
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_PASSWORD }}
+        run: |   
+          tar czf funcampr-gateway/funcampr-test.tar.gz funcampr-allinone
+          rclone copy funcampr-gateway/funcampr-test.tar.gz monS3:funcampr
 
