@@ -46,7 +46,6 @@ jobs:
         run: |
           wget -P funcampr-gateway https://github.com/InseeFrLab/funcamp-r-icarius/releases/download/V1/data.tgz
           tar -xzvf funcampr-gateway/data.tgz
-          tar -xzvf funcampr-gateway/data.tar
           mkdir funcampr-allinone/ressources/solarus/data
           rclone copy funcampr-gateway/data funcampr-allinone/ressources/solarus/data
   # Zipping the whole folder and pushing to S3 repo
