@@ -1,0 +1,16 @@
+name: packaging all-in-one funcampR dock
+
+on:
+  push:
+    branches:
+      - "**"
+    tags:
+      - "*"
+  pull_request:
+
+jobs:
+  helloword:
+    runs-on: ubuntu-latest
+    container: rclone/rclone
+    steps:
+      - run: echo "Hello, Nono!"
