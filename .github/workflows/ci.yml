@@ -45,11 +45,10 @@ jobs:
       - name: Download icaRius game
         run: |
           wget -P funcampr-gateway https://github.com/InseeFrLab/funcamp-r-icarius/releases/download/V1/data.tgz
-          tar -xzvf funcampr-gateway/data.tgz
+          tar -xzvf funcampr-gateway/data.tgz -C funcampr-gateway
           mkdir funcampr-allinone/ressources/solarus
           mkdir funcampr-allinone/ressources/solarus/data
-          rclone copy funcampr-gateway/data.tgz funcampr-allinone/ressources/solarus/data
-          rclone copy funcampr-gateway/data/data funcampr-allinone/ressources/solarus/data
+          rclone copy funcampr-gateway/data funcampr-allinone/ressources/solarus/data
   # Zipping the whole folder and pushing to S3 repo
       - name: Push On Minio
         env:
