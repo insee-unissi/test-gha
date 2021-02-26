@@ -41,13 +41,6 @@ jobs:
           mkdir funcampr-allinone/ressources/Grimoire
           rclone copy funcampr-gateway/funcamp-r-windows-grimoire-launcher-master/Grimoire funcampr-allinone/ressources/Grimoire
           rclone copy funcampr-gateway/funcamp-r-windows-grimoire-launcher-master/START_grimoire.hta funcampr-allinone
-  # Copying icaRius game from repo
-      - name: Download icaRius game
-        run: |
-          wget -P funcampr-gateway https://github.com/InseeFrLab/funcamp-r-icarius/releases/download/V1/data.tgz
-          tar -xzvf funcampr-gateway/data.tgz
-          mkdir funcampr-allinone/ressources/solarus/data
-          rclone copy funcampr-gateway/data funcampr-allinone/ressources/solarus/data
   # Zipping the whole folder and pushing to S3 repo
       - name: Push On Minio
         env:
