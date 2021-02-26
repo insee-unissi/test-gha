@@ -45,8 +45,7 @@ jobs:
       - name: Download icaRius game
         run: |
           wget -P funcampr-gateway https://github.com/InseeFrLab/funcamp-r-icarius/releases/download/V1/data.tgz
-          tar -xzvf funcampr-gateway/data.tgz -C funcampr-gateway
-          mkdir funcampr-allinone/ressources/solarus
+          tar -xzf funcampr-gateway/data.tgz -C funcampr-gateway
           mkdir funcampr-allinone/ressources/solarus/data
           rclone copy funcampr-gateway/data funcampr-allinone/ressources/solarus/data
   # Zipping the whole folder and pushing to S3 repo
@@ -55,6 +54,6 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.S3_USERNAME }} 
           AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_PASSWORD }}
         run: |   
-          tar czf funcampr-gateway/funcampr-test.tar.gz funcampr-allinone/ressources/Grimoire
+          tar czf funcampr-gateway/funcampr-test.tar.gz funcampr-allinone
           rclone copy funcampr-gateway/funcampr-test.tar.gz monS3:funcampr
 
