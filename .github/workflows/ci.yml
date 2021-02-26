@@ -49,6 +49,12 @@ jobs:
           mkdir funcampr-allinone/ressources/solarus
           mkdir funcampr-allinone/ressources/solarus/data
           rclone copy funcampr-gateway/data funcampr-allinone/ressources/solarus/data
+# Copying Solarus Game Engine
+      - name: Download Solarus Game Engine
+        run: |
+          wget -P funcampr-gateway https://github.com/InseeFrLab/funcamp-r-windows-solarus/archive/master.zip
+          unzip -q funcampr-gateway/master.zip -d funcampr-gateway
+          rclone copy funcampr-gateway/funcamp-r-windows-solarus-master/solarus funcampr-allinone/ressources/solarus
   # Zipping the whole folder and pushing to S3 repo
       - name: Push On Minio
         env:
