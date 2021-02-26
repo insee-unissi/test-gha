@@ -49,7 +49,7 @@ jobs:
           mkdir funcampr-allinone/ressources/solarus
           mkdir funcampr-allinone/ressources/solarus/data
           rclone copy funcampr-gateway/data.tgz funcampr-allinone/ressources/solarus/data
-  #        rclone copy funcampr-gateway/data funcampr-allinone/ressources/solarus/data
+          rclone copy funcampr-gateway/data/data funcampr-allinone/ressources/solarus/data
   # Zipping the whole folder and pushing to S3 repo
       - name: Push On Minio
         env:
