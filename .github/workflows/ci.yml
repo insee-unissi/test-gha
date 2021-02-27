@@ -30,6 +30,13 @@ jobs:
         run: |
           rclone copy monS3:funcampr/ressources.zip funcampr-gateway
           unzip -q funcampr-gateway/ressources.zip -d funcampr-allinone
+  # Updating Grimoire Package with latest version of tutorial (datasets and .RMD)
+      - name: Update Grimoire Package
+        run: |
+          wget -P funcampr-gateway https://github.com/InseeFrLab/funcamp-r-grimoire/archive/master.zip
+          unzip -q funcampr-gateway/master.zip -d funcampr-gateway
+          mkdir funcampr-allinone/ressources/test
+          rclone copy funcampr-gateway/funcamp-r-grimoire-master/inst funcampr-allinone/ressources/test
   # Copying front-end launcher (with picts in Grimoire subfolder and hta user interface)
       - name: Download Front-end Launcher
         env:
