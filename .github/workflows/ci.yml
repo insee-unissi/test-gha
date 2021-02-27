@@ -36,8 +36,8 @@ jobs:
           wget -P funcampr-gateway https://github.com/InseeFrLab/funcamp-r-grimoire/archive/master.zip
           unzip -q funcampr-gateway/master.zip -d funcampr-gateway
           rm funcampr-gateway/master.zip
-          rm funcampr-allinone/ressources/R/library/funcampR/data
-          rm funcampr-allinone/ressources/R/library/funcampR/learnr
+          rm -r funcampr-allinone/ressources/R/library/funcampR/data
+          rm -r funcampr-allinone/ressources/R/library/funcampR/learnr
           rclone copy funcampr-gateway/funcamp-r-grimoire-master/inst funcampr-allinone/ressources/R/library/funcampR
   # Copying front-end launcher (with picts in Grimoire subfolder and hta user interface)
       - name: Download Front-end Launcher
