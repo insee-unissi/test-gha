@@ -22,6 +22,7 @@ jobs:
           rclone ls monS3:funcampr
           mkdir funcampr-gateway
           mkdir funcampr-allinone
+          zip funcampr-allinone *
   # Copying required statistical softwares and dependencies (R and packages, Rstudio) in portable mode
       - name: Download Initial Dock
         env:
