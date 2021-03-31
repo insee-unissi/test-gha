@@ -11,7 +11,7 @@ on:
 jobs:
   helloword:
     runs-on: ubuntu-latest
-    container: ubuntu/ubuntu
+    container: ubuntu
     steps:
       - name: install_rclone
         run: |
