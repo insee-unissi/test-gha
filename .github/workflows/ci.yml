@@ -11,8 +11,11 @@ on:
 jobs:
   helloword:
     runs-on: ubuntu-latest
-    container: rclone/rclone
+    container: ubuntu/ubuntu
     steps:
+      - name: install_rclone
+        run: |
+          curl https://rclone.org/install.sh | sudo bash
       - name: Credential
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.S3_USERNAME }} 
