@@ -17,7 +17,7 @@ jobs:
         run: |
           apt-get update
           apt-get upgrade
-          apt install curl
+          apt-get -y install curl
           curl https://rclone.org/install.sh | sudo bash
       - name: Credential
         env:
