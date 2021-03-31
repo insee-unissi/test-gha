@@ -15,6 +15,9 @@ jobs:
     steps:
       - name: install_rclone
         run: |
+          apt-get update
+          apt-get upgrade
+          apt install curl
           curl https://rclone.org/install.sh | sudo bash
       - name: Credential
         env:
