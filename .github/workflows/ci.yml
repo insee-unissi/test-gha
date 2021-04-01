@@ -18,7 +18,7 @@ jobs:
           apt-get -y update
           apt-get -y upgrade
           apt-get -y install curl
-#          curl https://rclone.org/install.sh | sudo bash
+          curl https://rclone.org/install.sh | sudo bash
       - name: Credential
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.S3_USERNAME }} 
