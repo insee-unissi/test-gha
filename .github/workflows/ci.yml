@@ -9,7 +9,7 @@ on:
   pull_request:
 
 jobs:
-  helloword:
+  funcamp-allinone:
     runs-on: ubuntu-latest
     container: ubuntu
     steps:
@@ -17,7 +17,7 @@ jobs:
         run: |
           apt-get -y update
           apt-get -y upgrade
-          apt-get -y install curl unzip
+          apt-get -y install curl unzip wget
           curl https://rclone.org/install.sh | bash
       - name: Credential
         env:
@@ -35,7 +35,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_PASSWORD }}
         run: |
           rclone copy monS3:funcampr/ressources.zip funcampr-gateway
-          unzip -O cp936 -q funcampr-gateway/ressources.zip -d funcampr-allinone
+          unzip -q funcampr-gateway/ressources.zip -d funcampr-allinone
   # Updating Grimoire Package with latest version of tutorial (datasets and .RMD) and root copy of datasets for users
       - name: Update Grimoire Package
         run: |
