@@ -76,5 +76,5 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.S3_USERNAME }} 
           AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_PASSWORD }}
         run: |   
-          zip -r funcampr-gateway/funcampr-allinone.zip funcampr-allinone
+          zip -q -r funcampr-gateway/funcampr-allinone.zip funcampr-allinone
           rclone copy funcampr-gateway/funcampr-allinone.zip monS3:funcampr
