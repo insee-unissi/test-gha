@@ -17,7 +17,7 @@ jobs:
         run: |
           apt-get -y update
           apt-get -y upgrade
-          apt-get -y install curl unzip wget
+          apt-get -y install curl zip unzip wget
           curl https://rclone.org/install.sh | bash
       - name: Credential
         env:
@@ -76,6 +76,5 @@ jobs:
           AWS_ACCESS_KEY_ID: ${{ secrets.S3_USERNAME }} 
           AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_PASSWORD }}
         run: |   
-          tar czf funcampr-gateway/funcampr-allinone.tar.gz funcampr-allinone
-          rclone copy funcampr-gateway/funcampr-allinone.tar.gz monS3:funcampr
-
+          zip -r funcampr-gateway/funcampr-allinone.zip funcampr-allinone
+          rclone copy funcampr-gateway/funcampr-allinone.zip monS3:funcampr
