@@ -35,7 +35,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.S3_PASSWORD }}
         run: |
           rclone copy monS3:funcampr/ressources.zip funcampr-gateway
-          unzip -q funcampr-gateway/ressources.zip -d funcampr-allinone
+          unzip -O cp936 -q funcampr-gateway/ressources.zip -d funcampr-allinone
   # Updating Grimoire Package with latest version of tutorial (datasets and .RMD) and root copy of datasets for users
       - name: Update Grimoire Package
         run: |
