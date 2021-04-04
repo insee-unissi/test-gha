@@ -28,6 +28,7 @@ jobs:
           rclone ls monS3:funcampr
           mkdir funcampr-gateway
           mkdir funcampr-allinone
+          mkdir icaRius-windows
   # Copying required statistical softwares and dependencies (R and packages, Rstudio) in portable mode
       - name: Download Initial Dock
         env:
@@ -47,8 +48,8 @@ jobs:
           rclone copy funcampr-gateway/funcamp-r-grimoire-master/inst funcampr-allinone/ressources/R/library/funcampR
           mkdir funcampr-allinone/data
           rclone copy funcampr-gateway/funcamp-r-grimoire-master/inst/data funcampr-allinone/data
-  # Copying front-end launcher (with picts in Grimoire subfolder and hta user interface)
-      - name: Download Front-end Launcher
+  # Copying front-end launcher for all-in-one package (with picts in Grimoire subfolder and hta user interface)
+      - name: Download Front-end Launcher all-in-one
         run: |   
           wget -P funcampr-gateway https://github.com/InseeFrLab/funcamp-r-windows-grimoire-launcher/archive/master.zip
           unzip -q funcampr-gateway/master.zip -d funcampr-gateway
@@ -56,6 +57,12 @@ jobs:
           mkdir funcampr-allinone/ressources/Grimoire
           rclone copy funcampr-gateway/funcamp-r-windows-grimoire-launcher-master/Grimoire funcampr-allinone/ressources/Grimoire
           rclone copy funcampr-gateway/funcamp-r-windows-grimoire-launcher-master/START_grimoire.hta funcampr-allinone
+  # Copying front-end launcher for icaRius package (with picts in Grimoire subfolder and hta user interface)
+      - name: Download Front-end Launcher icaRius
+        run: |   
+          mkdir icaRius-windows/ressources/Grimoire
+          rclone copy funcampr-gateway/funcamp-r-windows-grimoire-launcher-master/Grimoire icaRius-windows/ressources/Grimoire
+          rclone copy funcampr-gateway/funcamp-r-windows-grimoire-launcher-master/START_icarius.hta icaRius-windows
  # Copying icaRius game from repo
       - name: Download icaRius game
         run: |
@@ -63,13 +70,17 @@ jobs:
           tar -xzf funcampr-gateway/data.tgz -C funcampr-gateway
           mkdir funcampr-allinone/ressources/solarus
           mkdir funcampr-allinone/ressources/solarus/data
+          mkdir icaRius-windows/ressources/solarus
+          mkdir icaRius-windows/ressources/solarus/data
           rclone copy funcampr-gateway/data funcampr-allinone/ressources/solarus/data
+          rclone copy funcampr-gateway/data icaRius-windows/ressources/solarus/data
 # Copying Solarus Game Engine
       - name: Download Solarus Game Engine
         run: |
           wget -P funcampr-gateway https://github.com/InseeFrLab/funcamp-r-windows-solarus/archive/master.zip
           unzip -q funcampr-gateway/master.zip -d funcampr-gateway
           rclone copy funcampr-gateway/funcamp-r-windows-solarus-master/solarus funcampr-allinone/ressources/solarus
+          rclone copy funcampr-gateway/funcamp-r-windows-solarus-master/solarus icaRius-windows/ressources/solarus
   # Zipping the whole folder and pushing to S3 repo
       - name: Push On Minio
         env:
@@ -78,3 +89,5 @@ jobs:
         run: |   
           zip -q -r funcampr-gateway/funcampr-allinone.zip funcampr-allinone
           rclone copy funcampr-gateway/funcampr-allinone.zip monS3:funcampr
+          zip -q -r funcampr-gateway/icaRius-windows.zip icaRius-windows
+          rclone copy funcampr-gateway/icaRius-windows.zip monS3:funcampr
