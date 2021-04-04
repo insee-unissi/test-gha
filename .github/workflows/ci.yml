@@ -60,6 +60,7 @@ jobs:
   # Copying front-end launcher for icaRius package (with picts in Grimoire subfolder and hta user interface)
       - name: Download Front-end Launcher icaRius
         run: |   
+          mkdir icaRius-windows/ressources
           mkdir icaRius-windows/ressources/Grimoire
           rclone copy funcampr-gateway/funcamp-r-windows-grimoire-launcher-master/Grimoire icaRius-windows/ressources/Grimoire
           rclone copy funcampr-gateway/funcamp-r-windows-grimoire-launcher-master/START_icarius.hta icaRius-windows
